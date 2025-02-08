@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+
+@plugin "@tailwindcss/forms";
+
+
+@theme {
+    --font-serif: "Merriweather", "serif";
+    --font-sans: "Roboto", "sans-serif";
+}
