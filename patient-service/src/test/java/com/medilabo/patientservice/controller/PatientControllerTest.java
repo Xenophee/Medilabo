@@ -103,7 +103,7 @@ class PatientControllerTest {
     }
 
     @Test
-    void updatePatient_existingId() throws Exception {
+    void update_existingId() throws Exception {
         patient.setFirstName("Jane");
 
         when(patientService.update(eq(patientId), any(Patient.class))).thenReturn(patient);
@@ -118,7 +118,7 @@ class PatientControllerTest {
     }
 
     @Test
-    void updatePatient_nonExistingId() throws Exception {
+    void update_nonExistingId() throws Exception {
 
         when(patientService.update(any(UUID.class), any(Patient.class))).thenThrow(new NotFoundException("Patient not found"));
 
@@ -129,7 +129,7 @@ class PatientControllerTest {
     }
 
     @Test
-    void deletePatient_existingId() throws Exception {
+    void delete_existingId() throws Exception {
         mockMvc.perform(delete("/patients/{id}", patientId))
                 .andExpect(status().isNoContent());
 
@@ -137,7 +137,7 @@ class PatientControllerTest {
     }
 
     @Test
-    void deletePatient_nonExistingId() throws Exception {
+    void delete_nonExistingId() throws Exception {
         doThrow(new NotFoundException("Patient non trouvé")).when(patientService).delete(any(UUID.class));
 
         mockMvc.perform(delete("/patients/{id}", UUID.randomUUID()))

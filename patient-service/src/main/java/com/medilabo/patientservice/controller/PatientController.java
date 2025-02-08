@@ -53,7 +53,7 @@ public class PatientController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Patient> updatePatient(@PathVariable UUID id, @Valid @RequestBody Patient updatedPatient) {
+    public ResponseEntity<Patient> update(@PathVariable UUID id, @Valid @RequestBody Patient updatedPatient) {
         logger.info("Requête pour mettre à jour le patient avec l'ID: {}", id);
         Patient patient = patientService.update(id, updatedPatient);
         logger.info("Patient mis à jour avec l'ID: {}", id);
@@ -61,7 +61,7 @@ public class PatientController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePatient(@PathVariable UUID id) {
+    public ResponseEntity<Void> delete(@PathVariable UUID id) {
         logger.info("Requête pour supprimer le patient avec l'ID: {}", id);
         patientService.delete(id);
         logger.info("Patient supprimé avec l'ID: {}", id);
