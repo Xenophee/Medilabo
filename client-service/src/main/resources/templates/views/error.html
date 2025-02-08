@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    <title>Détail du patient</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/output.css" />
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.ico" />
+    <link
+            href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+            rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet">
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="px-4 py-10 md:px-16 xl:px-32">
+    <div class="min-h-screen-minus-header border border-red-500/20 p-5 backdrop-blur-sm md:p-16">
+        <div class="grid grid-cols-[200px_1fr_200px]">
+            <div>
+                <a href="/patients" class=" mt-10 text-center text-teal-500 hover:text-teal-700"><i class="ri-arrow-left-circle-line ri-2x" title="Retour à la liste des patients"></i></a>
+            </div>
+        </div>
+
+        <section class="flex flex-col">
+            <div class="grid h-100 place-content-center px-4">
+                <h1 class="uppercase tracking-widest text-red-500">Une erreur est survenue</h1>
+            </div>
+        </section>
+    </div>
+</main>
+
+</body>
+</html>

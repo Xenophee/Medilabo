@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    <title>Ajouter une note</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/output.css" />
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.ico" />
+    <link
+            href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+            rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet">
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="px-4 py-10 md:px-16 xl:px-32">
+    <div class="min-h-screen-minus-header border border-red-500/20 p-5 backdrop-blur-sm md:p-16">
+        <div class="grid grid-cols-[200px_1fr_200px]">
+            <div>
+                <a th:href="@{/patients/{id}(id=${patientId})}" class=" mt-10 text-center text-teal-500 hover:text-teal-700"><i class="ri-arrow-left-circle-line ri-2x" title="Retour sur le détail du patient"></i></a>
+            </div>
+            <h1 class="mb-16 border-b border-teal-500/40 p-5 text-center font-special text-2xl font-bold uppercase tracking-widest text-teal-500">Ajouter une note au patient <span th:text="${patientName}"></span> </h1>
+        </div>
+
+        <section class="flex flex-col">
+            <form th:action="@{/patients/{id}/notes/new(id=${patientId})}" th:object="${note}" method="post" class="mt-8 flex flex-col gap-6 w-1/2 mx-auto">
+                <!--                <div th:replace="~{fragments/success-message :: success-message}"></div>-->
+
+                <!--                <div th:replace="~{fragments/error-message :: error-message}"></div>-->
+
+                <input type="hidden" th:field="*{patId}" th:value="${patId}" />
+                <input type="hidden" th:field="*{patient}" th:value="${patient}" />
+
+                <div>
+                    <label for="note" class="block text-sm font-medium text-zinc-700">Note * :</label>
+
+                    <textarea id="note" name="note" rows="10" th:field="*{note}"
+                              class="mt-1 w-full rounded-md border-zinc-200 bg-white text-sm text-zinc-700 shadow-sm focus:border-teal-500 focus:ring-teal-500"></textarea>
+                </div>
+
+
+
+                <button class="my-6 mx-auto inline-block shrink-0 rounded-md border border-teal-500 bg-teal-500 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-teal-600 focus:outline-none focus:ring active:text-teal-500 cursor-pointer">
+                    <i class="ri-sticky-note-add-line ri-lg me-2"></i>Ajouter la note
+                </button>
+            </form>
+
+
+        </section>
+    </div>
+</main>
+
+</body>
+</html>

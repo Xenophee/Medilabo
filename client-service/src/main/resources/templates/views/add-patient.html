@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    <title>Ajouter un patient</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/output.css" />
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.ico" />
+    <link
+            href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+            rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet">
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="px-4 py-10 md:px-16 xl:px-32">
+    <div class="border border-red-500/20 p-5 backdrop-blur-sm md:p-16">
+        <div class="grid grid-cols-[200px_1fr_200px]">
+            <div>
+                <a href="/patients" class=" mt-10 text-center text-teal-500 hover:text-teal-700"><i class="ri-arrow-left-circle-line ri-2x" title="Retour à la liste des patients"></i></a>
+            </div>
+            <h1 class="mb-16 border-b border-teal-500/40 p-5 text-center font-special text-2xl font-bold uppercase tracking-widest text-teal-500">Ajouter un patient </h1>
+        </div>
+
+        <section class="flex flex-col">
+            <form th:action="@{/patients/new}" th:object="${patient}" method="post" class="mt-8 flex flex-col gap-6 w-1/2 mx-auto">
+
+                <div th:replace="~{fragments/error-message :: error-message}"></div>
+
+                <div class="flex flex-col gap-6">
+                    <div>
+                        <label for="lastName" class="block text-sm font-medium text-zinc-700">Nom * :</label>
+                        <input type="text" id="lastName" name="lastName"
+                               class="mt-1 w-full rounded-md border-zinc-200 bg-white text-sm text-zinc-700 shadow-sm focus:border-teal-500 focus:ring-teal-500"
+                               th:field="*{lastName}" th:value="*{lastName}" th:attr="aria-invalid=${#fields.hasErrors('lastName')}">
+
+                        <small th:if="${#fields.hasErrors('lastName')}" th:errorclass="text-red-500" th:errors="*{lastName}"> </small>
+                    </div>
+
+                    <div>
+                        <label for="firstName" class="block text-sm font-medium text-zinc-700">Prénom * :</label>
+                        <input type="text" id="firstName" name="firstName"
+                               class="mt-1 w-full rounded-md border-zinc-200 bg-white text-sm text-zinc-700 shadow-sm focus:border-teal-500 focus:ring-teal-500"
+                               th:field="*{firstName}" th:value="*{firstName}" th:attr="aria-invalid=${#fields.hasErrors('firstName')}">
+
+                        <small th:if="${#fields.hasErrors('firstName')}" th:errorclass="text-red-500" th:errors="*{firstName}"> </small>
+                    </div>
+
+                    <div>
+                        <label for="birthdate" class="block text-sm font-medium text-zinc-700">Date de naissance * :</label>
+                        <input type="date" id="birthdate" name="birthdate"
+                               class="mt-1 w-full rounded-md border-zinc-200 bg-white text-sm text-zinc-700 shadow-sm focus:border-teal-500 focus:ring-teal-500"
+                               th:field="*{birthdate}" th:attr="aria-invalid=${#fields.hasErrors('birthdate')}">
+
+                        <small th:if="${#fields.hasErrors('birthdate')}" th:errorclass="text-red-500" th:errors="*{birthdate}"> </small>
+                    </div>
+
+                    <div>
+                        <label for="gender" class="block text-sm font-medium text-zinc-700">Genre * :</label>
+                        <div class="mt-1 flex gap-4">
+                            <div>
+                                <input type="radio" id="genderM" name="gender" value="M"
+                                       class="text-teal-500 focus:ring-teal-500"
+                                       th:field="*{gender}" th:checked="|*{gender} == 'M'|">
+                                <label for="genderM" class="text-sm font-medium text-zinc-700">M</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="genderF" name="gender" value="F"
+                                       class="text-teal-500 focus:ring-teal-500"
+                                       th:field="*{gender}" th:checked="|*{gender} == 'F'|">
+                                <label for="genderF" class="text-sm font-medium text-zinc-700">F</label>
+                            </div>
+                        </div>
+                        <small th:if="${#fields.hasErrors('gender')}" th:errorclass="text-red-500" th:errors="*{gender}"> </small>
+                    </div>
+
+                    <div>
+                        <label for="address" class="block text-sm font-medium text-zinc-700">Adresse :</label>
+                        <input type="text" id="address" name="address"
+                               class="mt-1 w-full rounded-md border-zinc-200 bg-white text-sm text-zinc-700 shadow-sm focus:border-teal-500 focus:ring-teal-500"
+                               th:field="*{address}" th:value="*{address}" th:attr="aria-invalid=${#fields.hasErrors('address')}">
+
+                        <small th:if="${#fields.hasErrors('address')}" th:errorclass="text-red-500" th:errors="*{address}"> </small>
+                    </div>
+
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-zinc-700">Téléphone :</label>
+                        <input type="text" id="phone" name="phone"
+                               class="mt-1 w-full rounded-md border-zinc-200 bg-white text-sm text-zinc-700 shadow-sm focus:border-teal-500 focus:ring-teal-500"
+                               th:field="*{phone}" th:value="*{phone}" th:attr="aria-invalid=${#fields.hasErrors('phone')}">
+
+                        <small th:if="${#fields.hasErrors('phone')}" th:errorclass="text-red-500" th:errors="*{phone}"> </small>
+                    </div>
+                </div>
+
+
+
+                <button class="my-6 mx-auto inline-block shrink-0 rounded-md border border-teal-500 bg-teal-500 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-teal-600 focus:outline-none focus:ring active:text-teal-500 cursor-pointer">
+                    <i class="ri-user-add-line ri-lg me-2"></i>Ajouter le patient
+                </button>
+            </form>
+
+
+        </section>
+    </div>
+</main>
+
+</body>
+</html>

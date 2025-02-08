@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    <title>Liste des patients</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/output.css" />
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.ico" />
+    <link
+            href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+            rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet">
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="bg-[url('/images/pattern-orange.png')] px-4 py-10 md:px-16 xl:px-32">
+    <div class="min-h-screen-minus-header border border-red-500/20 p-5 backdrop-blur-sm md:p-16">
+        <h1 class="mb-16 border-b border-teal-500/40 p-5 text-center font-special text-2xl font-bold uppercase tracking-widest text-teal-500">Liste des patients</h1>
+
+        <section>
+
+            <div class="flex justify-end w-full mb-10">
+                <a href="/patients/new" class="mt-10 inline-block text-center rounded-md border border-teal-500 bg-teal-500 text-white transition hover:bg-transparent hover:text-teal-600 focus:outline-none focus:ring active:text-teal-500 px-12 py-3">
+                    <i class="ri-user-add-line ri-lg me-2"></i>Ajouter un patient
+                </a>
+            </div>
+
+            <div th:replace="~{fragments/success-message :: success-message}"></div>
+
+            <div class="overflow-x-auto container mx-auto">
+                <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+                    <thead class="ltr:text-left rtl:text-right">
+                    <tr>
+                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Nom</th>
+                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Prénom</th>
+                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Date de naissance</th>
+                        <th class="px-4 py-2"></th>
+                    </tr>
+                    </thead>
+
+                    <tbody class="divide-y divide-gray-200">
+                    <tr th:each="patient : ${patients}">
+                        <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900" th:text="${patient.getLastName()}"></td>
+                        <td class="whitespace-nowrap px-4 py-2 text-gray-700" th:text="${patient.getFirstName()}"></td>
+                        <td class="whitespace-nowrap px-4 py-2 text-gray-700" th:text="${patient.formattedBirthdate()}"></td>
+                        <td class="whitespace-nowrap px-4 py-2 text-end">
+                            <a
+                                    th:href="@{/patients/{id}(id=${patient.getId()})}"
+                                    class="inline-block rounded bg-teal-600 px-4 py-2 text-xs font-medium text-white hover:bg-teal-700"
+                            >
+                                <i class="ri-folder-info-line ri-lg me-2"></i>
+                                Consulter
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</main>
+
+</body>
+</html>

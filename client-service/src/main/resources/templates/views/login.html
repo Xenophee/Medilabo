@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Accueil - Connexion</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/output.css" />
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.ico" />
+    <link
+            href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+            rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet">
+</head>
+<body>
+<main class="flex min-h-screen items-center">
+    <section
+            class="mx-auto flex items-center justify-center rounded-2xl border border-red-500 p-5 shadow-lg backdrop-blur-sm">
+        <div class="rounded-2xl bg-zinc-50 p-5 px-55">
+            <a class="block" href="/">
+                <img src="/images/logo.png" class="w-16 mx-auto" alt="Logo de l'application" title="Accueil"/>
+            </a>
+
+            <h1 class="text-center mt-2 bg-linear-to-r from-red-700 to-red-500 bg-clip-text text-transparent pb-5 font-special text-2xl font-bold sm:text-3xl md:text-4xl">
+                Medilabo</h1>
+
+            <form th:action="@{/}" method="post" class="mt-8 flex flex-col gap-6 w-100">
+<!--                <div th:replace="~{fragments/success-message :: success-message}"></div>-->
+
+<!--                <div th:replace="~{fragments/error-message :: error-message}"></div>-->
+
+                <div>
+                    <label for="username" class="block text-sm font-medium text-zinc-700"> Nom d'utilisateur * : </label>
+
+                    <input type="text" id="username" name="username"
+                           class="mt-1 w-full rounded-md border-zinc-200 bg-white text-sm text-zinc-700 shadow-sm focus:border-teal-500 focus:ring-teal-500"/>
+                </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-medium text-zinc-700">Mot de passe * :</label>
+
+                    <input type="password" id="password" name="password"
+                           class="mt-1 w-full rounded-md border-zinc-200 bg-white text-sm text-zinc-700 shadow-sm focus:border-teal-500 focus:ring-teal-500"/>
+                </div>
+
+                <button class="my-6 mx-auto inline-block shrink-0 rounded-md border border-teal-500 bg-teal-500 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-teal-600 focus:outline-none focus:ring active:text-teal-500 cursor-pointer">
+                    Se connecter
+                </button>
+            </form>
+        </div>
+    </section>
+</main>
+</body>
+</html>
