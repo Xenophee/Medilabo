@@ -35,6 +35,7 @@
 
                 <h2 class="text-2xl font-bold text-center mb-15" th:text="|${patientDetails.patient.getLastName} ${patientDetails.getPatient().getFirstName()}|"></h2>
                 <div class="font-bold">Date de naissance : <span class="font-normal" th:text="${patientDetails.getPatient().formattedBirthdate()}"></span></div>
+                <div class="font-bold">Genre : <span class="font-normal" th:text="${patientDetails.getPatient().getGender()}"></span></div>
                 <div class="font-bold">Adresse : <span class="font-normal" th:text="${patientDetails.getPatient().getAddress()}"></span></div>
                 <div class="font-bold">Téléphone : <span class="font-normal" th:text="${patientDetails.getPatient().getPhone()}"></span></div>
 
@@ -53,7 +54,6 @@
             <a th:href="@{/patients/{id}/update(id=${patientDetails.getPatient().getId()})}" class="mt-10 inline-block mx-auto text-center rounded-md border border-teal-500 bg-teal-500 text-white transition hover:bg-transparent hover:text-teal-600 focus:outline-none focus:ring active:text-teal-500 px-12 py-3"><i class="ri-edit-line ri-lg me-2"></i>Modifier les informations du patient</a>
 
             <a th:href="@{/patients/{id}/notes/new(id=${patientDetails.getPatient().getId()})}" class="mt-10 inline-block mx-auto text-center rounded-md border border-teal-500 bg-teal-500 text-white transition hover:bg-transparent hover:text-teal-600 focus:outline-none focus:ring active:text-teal-500 px-12 py-3"><i class="ri-sticky-note-add-line ri-lg me-2"></i>Ajouter une note</a>
-
 
         </section>
     </div>
