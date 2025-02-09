@@ -4,7 +4,6 @@ import com.medilabo.clientservice.DTO.NoteDTO;
 import com.medilabo.clientservice.DTO.PatientDTO;
 import com.medilabo.clientservice.DTO.PatientDetailsDTO;
 import com.medilabo.clientservice.DTO.RiskReportDTO;
-import com.medilabo.clientservice.exception.AlreadyExistException;
 import com.medilabo.clientservice.feign.NoteClient;
 import com.medilabo.clientservice.feign.PatientClient;
 import com.medilabo.clientservice.feign.RiskReportClient;
@@ -90,19 +89,10 @@ public class PatientManagerController {
             return PATIENT_CREATION_VIEW;
         }
 
-        try {
-            PatientDTO patient = patientClient.create(newPatient);
-            logger.info("Nouveau patient créé : {}", patient);
-            redirectAttributes.addFlashAttribute("successMessage", "Le patient a été enregistré avec succès.");
-            return REDIRECT_TO_PATIENTS_LIST;
-        } catch (AlreadyExistException e) {
-            logger.error("Erreur lors de la création du patient : {}", e.getMessage());
-            model.addAttribute("errorMessage", "Le patient existe déjà.");
-            return PATIENT_CREATION_VIEW;
-        }
-
-//        logger.info("Nouveau patient créé : {}", patient);
-//        return REDIRECT_TO_PATIENTS_LIST;
+        PatientDTO patient = patientClient.create(newPatient);
+        logger.info("Nouveau patient créé : {}", patient);
+        redirectAttributes.addFlashAttribute("successMessage", "Le patient a été enregistré avec succès.");
+        return REDIRECT_TO_PATIENTS_LIST;
     }
 
 
