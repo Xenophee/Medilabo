@@ -147,6 +147,7 @@ public class PatientManagerController {
     @PostMapping("/patients/{id}/notes/new")
     public String createNote(@ModelAttribute("note") @Valid NoteDTO newNote) {
         logger.info("Requête pour créer une nouvelle note : {}", newNote);
+        newNote.setId(null);
         NoteDTO note = noteClient.addNoteToPatient(newNote);
         logger.info("Nouvelle note créée : {}", note);
         return REDIRECT_TO_PATIENT_DETAILS.replace("{id}", newNote.getPatId());

@@ -28,5 +28,9 @@ public class Note {
     @NotBlank
     private String note;
 
-    public Note(String patId, String patient, String note) {}
+    public Note(String patId, String patient, String note) {
+        this.patId = patId;
+        this.patient = patient;
+        this.note = note;
+    }
 }
