@@ -55,6 +55,7 @@
 
                     <div>
                         <label for="birthdate" class="block text-sm font-medium text-zinc-700">Date de naissance * :</label>
+                        <span class="hidden" id="birthdateString" th:text="${patient.getBirthdate()}"></span>
                         <input type="date" id="birthdate" name="birthdate"
                                class="mt-1 w-full rounded-md border-zinc-200 bg-white text-sm text-zinc-700 shadow-sm focus:border-teal-500 focus:ring-teal-500"
                                th:field="*{birthdate}" th:attr="aria-invalid=${#fields.hasErrors('birthdate')}">
@@ -114,3 +115,10 @@
 
 </body>
 </html>
+
+<script>
+    const birthdateInput = document.querySelector('#birthdate');
+    const birthdateString = document.querySelector('#birthdateString').textContent;
+
+    birthdateInput.value = birthdateString;
+</script>

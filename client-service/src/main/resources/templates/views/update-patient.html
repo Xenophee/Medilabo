@@ -31,7 +31,6 @@
 
         <section class="flex flex-col">
             <form th:action="@{/patients/{id}/update(id=${patient.getId()})}" th:object="${patient}" th:method="put" class="mt-8 flex flex-col gap-6 w-1/2 mx-auto">
-                <!--                <div th:replace="~{fragments/success-message :: success-message}"></div>-->
 
                 <div th:replace="~{fragments/error-message :: error-message}"></div>
 
@@ -56,9 +55,10 @@
 
                     <div>
                         <label for="birthdate" class="block text-sm font-medium text-zinc-700">Date de naissance * :</label>
+                        <span class="hidden" id="birthdateString" th:text="${patient.getBirthdate()}"></span>
                         <input type="date" id="birthdate" name="birthdate"
                                class="mt-1 w-full rounded-md border-zinc-200 bg-white text-sm text-zinc-700 shadow-sm focus:border-teal-500 focus:ring-teal-500"
-                               th:field="*{birthdate}" th:attr="aria-invalid=${#fields.hasErrors('birthdate')}">
+                               th:field="*{birthdate}" th:value="${patient.getBirthdate()}" th:attr="aria-invalid=${#fields.hasErrors('birthdate')}">
 
                         <small th:if="${#fields.hasErrors('birthdate')}" th:errorclass="text-red-500" th:errors="*{birthdate}"> </small>
                     </div>
@@ -115,3 +115,10 @@
 
 </body>
 </html>
+
+<script>
+    const birthdateInput = document.querySelector('#birthdate');
+    const birthdateString = document.querySelector('#birthdateString').textContent;
+
+    birthdateInput.value = birthdateString;
+</script>

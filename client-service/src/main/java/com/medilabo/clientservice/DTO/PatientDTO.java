@@ -1,8 +1,10 @@
 package com.medilabo.clientservice.DTO;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.medilabo.clientservice.validation.annotation.ValidAddress;
 import com.medilabo.clientservice.validation.annotation.ValidPhone;
 import jakarta.validation.constraints.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -101,9 +103,5 @@ public class PatientDTO {
 
     public String formattedBirthdate() {
         return birthdate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-    }
-
-    public String inputBirthdate() {
-        return birthdate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 }
