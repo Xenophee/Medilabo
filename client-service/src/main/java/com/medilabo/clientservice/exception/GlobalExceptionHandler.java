@@ -5,7 +5,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.server.ResponseStatusException;
@@ -19,7 +18,7 @@ public class GlobalExceptionHandler {
 
 
     @ExceptionHandler(ResponseStatusException.class)
-    public String handleResponseStatusException(ResponseStatusException ex, HttpServletRequest request, RedirectAttributes redirectAttributes, Model model) {
+    public String handleResponseStatusException(ResponseStatusException ex, HttpServletRequest request, RedirectAttributes redirectAttributes) {
         HttpStatus status = HttpStatus.valueOf(ex.getStatusCode().value());
 
         if (status == HttpStatus.NOT_FOUND) return "views/404";
