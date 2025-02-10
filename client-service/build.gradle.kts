@@ -24,6 +24,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
     implementation("org.projectlombok:lombok")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
+    testImplementation("org.springframework.security:spring-security-test")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 
