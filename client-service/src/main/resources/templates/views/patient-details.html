@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
 
     <title>Détail du patient</title>
@@ -39,21 +39,33 @@
                 <div class="font-bold">Adresse : <span class="font-normal" th:text="${patientDetails.getPatient().getAddress()}"></span></div>
                 <div class="font-bold">Téléphone : <span class="font-normal" th:text="${patientDetails.getPatient().getPhone()}"></span></div>
 
-                <hr class="my-10 border-0 bg-white h-px" />
 
-                <div th:each="note : ${patientDetails.getNotes()}">
-                    <p class="py-3" th:text="${note.getNote()}"></p>
+                <div sec:authorize="hasRole('PRACTITIONER')" class="mx-auto">
+                    <hr class="my-10 border-0 bg-white h-px" />
+
+                    <div th:if="${#lists.isEmpty(patientDetails.getNotes())}">
+                        <p class="py-3 text-center font-bold">Il n'y a pas de notes pour le moment.</p>
+                    </div>
+                    <div th:unless="${#lists.isEmpty(patientDetails.getNotes())}" th:each="note : ${patientDetails.getNotes()}">
+                        <p class="py-3" th:text="${note.getNote()}"></p>
+                    </div>
+
+                    <hr class="my-10 border-0 bg-white h-px" />
+
+                    <strong class="block text-center" th:text="${patientDetails.getRiskReport().label()}"></strong>
+                    <p class="text-center" th:text="${patientDetails.getRiskReport().description()}"></p>
                 </div>
-
-                <hr class="my-10 border-0 bg-white h-px" />
-
-                <strong class="block text-center" th:text="${patientDetails.getRiskReport().label()}"></strong>
-                <p class="text-center" th:text="${patientDetails.getRiskReport().description()}"></p>
             </div>
 
-            <a th:href="@{/patients/{id}/update(id=${patientDetails.getPatient().getId()})}" class="mt-10 inline-block mx-auto text-center rounded-md border border-teal-500 bg-teal-500 text-white transition hover:bg-transparent hover:text-teal-600 focus:outline-none focus:ring active:text-teal-500 px-12 py-3"><i class="ri-edit-line ri-lg me-2"></i>Modifier les informations du patient</a>
+            <div sec:authorize="hasRole('ORGANIZER')" class="mx-auto">
+                <a th:href="@{/patients/{id}/update(id=${patientDetails.getPatient().getId()})}" class="mt-10 inline-block mx-auto text-center rounded-md border border-teal-500 bg-teal-500 text-white transition hover:bg-transparent hover:text-teal-600 focus:outline-none focus:ring active:text-teal-500 px-12 py-3"><i class="ri-edit-line ri-lg me-2"></i>Modifier les informations du patient</a>
+            </div>
 
-            <a th:href="@{/patients/{id}/notes/new(id=${patientDetails.getPatient().getId()})}" class="mt-10 inline-block mx-auto text-center rounded-md border border-teal-500 bg-teal-500 text-white transition hover:bg-transparent hover:text-teal-600 focus:outline-none focus:ring active:text-teal-500 px-12 py-3"><i class="ri-sticky-note-add-line ri-lg me-2"></i>Ajouter une note</a>
+            <div sec:authorize="hasRole('PRACTITIONER')" class="mx-auto">
+                <a th:href="@{/patients/{id}/notes/new(id=${patientDetails.getPatient().getId()})}" class="mt-10 inline-block mx-auto text-center rounded-md border border-teal-500 bg-teal-500 text-white transition hover:bg-transparent hover:text-teal-600 focus:outline-none focus:ring active:text-teal-500 px-12 py-3">
+                    <i class="ri-sticky-note-add-line ri-lg me-2"></i>Ajouter une note
+                </a>
+            </div>
 
         </section>
     </div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
 
     <title>Liste des patients</title>
@@ -24,9 +24,9 @@
     <div class="min-h-screen-minus-header border border-red-500/20 p-5 backdrop-blur-sm md:p-16">
         <h1 class="mb-16 border-b border-teal-500/40 p-5 text-center font-special text-2xl font-bold uppercase tracking-widest text-teal-500">Liste des patients</h1>
 
-        <section>
+        <section class="pt-7">
 
-            <div class="flex justify-end w-full mb-10">
+            <div sec:authorize="hasRole('ORGANIZER')" class="flex justify-end w-full mb-10">
                 <a href="/patients/new" class="mt-10 inline-block text-center rounded-md border border-teal-500 bg-teal-500 text-white transition hover:bg-transparent hover:text-teal-600 focus:outline-none focus:ring active:text-teal-500 px-12 py-3">
                     <i class="ri-user-add-line ri-lg me-2"></i>Ajouter un patient
                 </a>

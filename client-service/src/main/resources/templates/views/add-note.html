@@ -31,9 +31,6 @@
 
         <section class="flex flex-col">
             <form th:action="@{/patients/{id}/notes/new(id=${patientId})}" th:object="${note}" method="post" class="mt-8 flex flex-col gap-6 w-1/2 mx-auto">
-                <!--                <div th:replace="~{fragments/success-message :: success-message}"></div>-->
-
-                <!--                <div th:replace="~{fragments/error-message :: error-message}"></div>-->
 
                 <input type="hidden" th:field="*{patId}" th:value="${patId}" />
                 <input type="hidden" th:field="*{patient}" th:value="${patient}" />

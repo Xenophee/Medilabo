@@ -3,7 +3,11 @@
     <div class="flex items-center justify-center font-bold">
         <img src="/images/logo.png" alt="Logo de l'application" class="w-15 mr-3"><h1>Medilabo</h1>
     </div>
-    <div class="flex items-center justify-center">
-        <a href=""><i class="ri-login-box-line ri-lg" title="Se déconnecter"></i></a>
-    </div>
+
+    <form th:action="@{/logout}" method="POST" class="flex items-center justify-center">
+        <input type="submit" class="hidden" value="Logout" id="logout"/>
+        <label for="logout" class="cursor-pointer hover:text-teal-500 transition">
+            <i class="ri-login-box-line ri-lg" title="Se déconnecter"></i>
+        </label>
+    </form>
 </header>
