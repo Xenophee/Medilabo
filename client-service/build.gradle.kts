@@ -40,14 +40,11 @@ dependencyManagement {
 }
 
 
-tasks.register<Exec>("buildTailwind") {
-    commandLine("npx", "tailwindcss", "-i", "src/main/resources/static/css/input.css", "-o", "src/main/resources/static/css/output.css", "--watch")
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = "com.medilabo.clientservice.ClientServiceApplication"
+    }
 }
-
-tasks.getByName("build") {
-    dependsOn("buildTailwind")
-}
-
 
 
 tasks.withType<Test> {
