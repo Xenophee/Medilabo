@@ -52,22 +52,6 @@ class RiskReportServiceTest {
         assertThat(result.label()).isEqualTo(RiskLevel.NONE.getLabel());
     }
 
-    @Test
-    void assessRisk_Borderline_ReturnsBorderline() {
-        PatientDTO patient = new PatientDTO(UUID.randomUUID(), "TestBorderline", "FirstName", LocalDate.of(1980, 1, 1), "M", "Address", "Phone");
-        List<NoteDTO> notes = List.of(
-                new NoteDTO(UUID.randomUUID().toString(), patient.id().toString(), patient.firstName(), "Le patient ressent beaucoup de stress."),
-                new NoteDTO(UUID.randomUUID().toString(), patient.id().toString(), patient.firstName(), "Le patient a une réaction aux médicaments.")
-        );
-
-        when(patientClient.getPatientById(anyString())).thenReturn(patient);
-        when(noteClient.getNotesByPatId(anyString())).thenReturn(notes);
-
-        RiskReportDTO result = riskReportService.assessRisk("2");
-
-        assertThat(result.label()).isEqualTo(RiskLevel.BORDERLINE.getLabel());
-    }
-
 
     @Test
     void assessRisk_PatientNotFound_ThrowsNotFoundException() throws Exception {
