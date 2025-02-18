@@ -4,6 +4,8 @@ services:
             context: ./client-service
             dockerfile: Dockerfile
         restart: unless-stopped
+        networks:
+            - frontend_network
         ports:
             - "8081:8081"
         depends_on:
@@ -14,8 +16,9 @@ services:
             context: ./gateway-service
             dockerfile: Dockerfile
         restart: unless-stopped
-        ports:
-            - "8080:8080"
+        networks:
+            - frontend_network
+            - backend_network
         depends_on:
             - patient
             - note
@@ -26,8 +29,8 @@ services:
             context: ./patient-service
             dockerfile: Dockerfile
         restart: unless-stopped
-        ports:
-            - "8082:8082"
+        networks:
+            - backend_network
         depends_on:
             - patient-db
         env_file: .env
@@ -39,13 +42,13 @@ services:
     patient-db:
         image: postgres:16
         restart: unless-stopped
+        networks:
+            - backend_network
         env_file: .env
         environment:
             POSTGRES_DB: ${POSTGRES_DB}
             POSTGRES_USER: ${POSTGRES_USER}
             POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-        ports:
-            - "5432:5432"
         volumes:
             - postgres_data:/var/lib/postgresql/data
 
@@ -53,8 +56,9 @@ services:
         build:
             context: ./note-service
             dockerfile: Dockerfile
-        ports:
-            - "8083:8083"
+        restart: unless-stopped
+        networks:
+            - backend_network
         depends_on:
             - note-db
         environment:
@@ -65,8 +69,8 @@ services:
     note-db:
         image: mongo:7
         restart: unless-stopped
-        ports:
-            - "27017:27017"
+        networks:
+            - backend_network
         volumes:
             - mongo_data:/data/db
         environment:
@@ -77,8 +81,8 @@ services:
             context: ./risk-report-service
             dockerfile: Dockerfile
         restart: unless-stopped
-        ports:
-            - "8084:8084"
+        networks:
+            - backend_network
         depends_on:
             - patient
             - note
@@ -86,3 +90,7 @@ services:
 volumes:
     postgres_data:
     mongo_data:
+
+networks:
+    frontend_network:
+    backend_network:
