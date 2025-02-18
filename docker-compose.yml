@@ -10,6 +10,8 @@ services:
             - "8081:8081"
         depends_on:
             - gateway
+        environment:
+            TZ: Europe/Paris
 
     gateway:
         build:
@@ -23,6 +25,8 @@ services:
             - patient
             - note
             - risk-report
+        environment:
+            TZ: Europe/Paris
 
     patient:
         build:
@@ -35,9 +39,10 @@ services:
             - patient-db
         env_file: .env
         environment:
-            - SPRING_DATASOURCE_URL=jdbc:postgresql://patient-db:5432/${POSTGRES_DB}
-            - SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}
-            - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+            SPRING_DATASOURCE_URL: jdbc:postgresql://patient-db:5432/${POSTGRES_DB}
+            SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+            SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+            TZ: Europe/Paris
 
     patient-db:
         image: postgres:16
@@ -49,6 +54,7 @@ services:
             POSTGRES_DB: ${POSTGRES_DB}
             POSTGRES_USER: ${POSTGRES_USER}
             POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+            TZ: Europe/Paris
         volumes:
             - postgres_data:/var/lib/postgresql/data
 
@@ -62,9 +68,10 @@ services:
         depends_on:
             - note-db
         environment:
-            - SPRING_DATA_MONGODB_HOST=note-db
-            - SPRING_DATA_MONGODB_PORT=27017
-            - SPRING_DATA_MONGODB_DATABASE=medilabo
+            SPRING_DATA_MONGODB_HOST: note-db
+            SPRING_DATA_MONGODB_PORT: 27017
+            SPRING_DATA_MONGODB_DATABASE: medilabo
+            TZ: Europe/Paris
 
     note-db:
         image: mongo:7
@@ -75,6 +82,7 @@ services:
             - mongo_data:/data/db
         environment:
             MONGO_INITDB_DATABASE: medilabo
+            TZ: Europe/Paris
 
     risk-report:
         build:
@@ -86,6 +94,8 @@ services:
         depends_on:
             - patient
             - note
+        environment:
+            TZ: Europe/Paris
 
 volumes:
     postgres_data:
