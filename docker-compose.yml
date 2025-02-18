@@ -2,7 +2,7 @@ services:
     client:
         build:
             context: ./client-service
-            dockerfile: Dockerfile-test
+            dockerfile: Dockerfile
         restart: unless-stopped
         ports:
             - "8081:8081"
@@ -12,7 +12,7 @@ services:
     gateway:
         build:
             context: ./gateway-service
-            dockerfile: Dockerfile-test
+            dockerfile: Dockerfile
         restart: unless-stopped
         ports:
             - "8080:8080"
@@ -24,7 +24,7 @@ services:
     patient:
         build:
             context: ./patient-service
-            dockerfile: Dockerfile-test
+            dockerfile: Dockerfile
         restart: unless-stopped
         ports:
             - "8082:8082"
@@ -52,7 +52,7 @@ services:
     note:
         build:
             context: ./note-service
-            dockerfile: Dockerfile-test
+            dockerfile: Dockerfile
         ports:
             - "8083:8083"
         depends_on:
@@ -75,7 +75,7 @@ services:
     risk-report:
         build:
             context: ./risk-report-service
-            dockerfile: Dockerfile-test
+            dockerfile: Dockerfile
         restart: unless-stopped
         ports:
             - "8084:8084"
