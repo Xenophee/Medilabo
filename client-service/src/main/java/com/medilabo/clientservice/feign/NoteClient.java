@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
-@FeignClient(name = "note-service", url = "http://localhost:8080")
+@FeignClient(name = "note-service", url = "http://gateway:8080")
 public interface NoteClient {
 
     @GetMapping("/notes/{patId}")

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
-@FeignClient(name = "risk-report-service", url = "http://localhost:8080")
+@FeignClient(name = "risk-report-service", url = "http://gateway:8080")
 public interface RiskReportClient {
 
     @GetMapping("/risk-report/{patId}")
