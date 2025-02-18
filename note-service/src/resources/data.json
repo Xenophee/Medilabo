@@ -2,7 +2,7 @@
     {
         "patId": "c62cc945-9a59-44ef-b6d1-cc16d97b1da9",
         "patient": "TestNone",
-        "note": "Le patient déclare qu'il 'se sent très bien' Poids égal ou inférieur au poids recommandé."
+        "note": "Le patient déclare qu'il 'se sent très bien'. Poids égal ou inférieur au poids recommandé."
     },
     {
         "patId": "2ca283cb-70c4-4ea9-8804-977ac1764032",
@@ -12,7 +12,7 @@
     {
         "patId": "2ca283cb-70c4-4ea9-8804-977ac1764032",
         "patient": "TestBorderline",
-        "note": "Le patient déclare avoir fait une réaction aux médicaments au cours des 3 derniers mois. Il remarque également que son audition continue d'être anormale"
+        "note": "Le patient déclare avoir fait une réaction aux médicaments au cours des 3 derniers mois. Il remarque également que son audition continue d'être anormale."
     },
     {
         "patId": "6348cdb8-8d95-4a6f-9712-4f57a63d8ca8",
@@ -27,7 +27,7 @@
     {
         "patId": "cac93fab-2701-48b6-a07e-b42628f02ea7",
         "patient": "TestEarlyOnset",
-        "note": "Le patient déclare qu'il lui est devenu difficile de monter les escaliers. Il se plaint également d’être essoufflé Tests de laboratoire indiquant que les anticorps sont élevés Réaction aux médicaments."
+        "note": "Le patient déclare qu'il lui est devenu difficile de monter les escaliers. Il se plaint également d’être essoufflé. Tests de laboratoire indiquant que les anticorps sont élevés Réaction aux médicaments."
     },
     {
         "patId": "cac93fab-2701-48b6-a07e-b42628f02ea7",

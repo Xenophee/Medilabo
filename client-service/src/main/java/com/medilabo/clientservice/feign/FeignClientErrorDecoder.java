@@ -44,6 +44,7 @@ public class FeignClientErrorDecoder implements ErrorDecoder {
             }
         } catch (IOException e) {
             logger.error("Erreur lors de la lecture du message d'erreur : ", e);
+            return "Erreur inattendue.";
         }
         return "Erreur inattendue.";
     }
