@@ -36,7 +36,7 @@ Pour configurer et exécuter le projet localement, suivez ces étapes :
 1. **Clonez le dépôt GitHub** :
 
 ```bash
-git clone https://github.com/Xenophee/Medilabo-Thymeleaf.git
+git clone https://github.com/Xenophee/Medilabo.git
 ```
 
 2. **Configurez les variables d'environnement dans le fichier `.env` (facultatif)** :
