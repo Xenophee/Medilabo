@@ -1,4 +1,5 @@
 services:
+
     client:
         build:
             context: ./client-service
@@ -80,6 +81,7 @@ services:
             - backend_network
         volumes:
             - mongo_data:/data/db
+            - ./note-service/initdb:/docker-entrypoint-initdb.d:ro
         environment:
             MONGO_INITDB_DATABASE: medilabo
             TZ: Europe/Paris
